@@ -41,20 +41,13 @@ const changeSlide = () => {
 
 const keyChangeSlide = (e) => {
   clearInterval(indexInterval);
-  if (e.keyCode === 37) {
-    if (active === 0) {
-      active = slideList.length;
-    }
-    active--;
-    image.src = slideList[active].img;
-    h1.textContent = slideList[active].text;
-    changeDot();
-  } else if (e.keyCode === 39) {
-    active++;
+  if (e.keyCode == 37 || e.keyCode === 39) {
+    e.keyCode == 37 ? active-- : active++;
     if (active === slideList.length) {
       active = 0;
+    } else if (active < 0) {
+      active = slideList.length - 1;
     }
-
     image.src = slideList[active].img;
     h1.textContent = slideList[active].text;
     changeDot();
